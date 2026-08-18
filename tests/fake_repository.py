@@ -38,7 +38,7 @@ class FakeClientRepository(BaseClientRepository):
         return client
     
     def delete(self, client):
-        return super().delete(client)
+        self.clients.remove(client)
 
 class FakeTicketRepository(BaseTicketRepository):
     def __init__(self):
@@ -68,19 +68,15 @@ class FakeTicketRepository(BaseTicketRepository):
         return None
     
     def update(self, ticket_data: UpdateTicket, ticket: TicketModel) -> TicketModel:
-        if ticket_data.ticket_id is not None:
-            ticket.ticket_id = ticket_data.ticket_id
-        if ticket_data.client_id is not None:
-            ticket.client_id = ticket_data.client_id
         if ticket_data.subject is not None:
             ticket.subject = ticket_data.subject
         if ticket_data.status is not None:
             ticket.status = ticket_data.status
         if ticket_data.priority is not None:
-            ticket.priority = ticket.priority
+            ticket.priority = ticket_data.priority
         if ticket_data.tags is not None:
             ticket.tags = ticket_data.tags
         return ticket
             
     def delete(self, ticket: TicketModel) -> None:
-        self.tasks.remove(ticket)
+        self.tickets.remove(ticket)

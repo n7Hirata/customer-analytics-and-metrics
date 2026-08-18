@@ -15,7 +15,7 @@ class UpdateTicket(BaseModel):
     status: str | None = None
     priority: str | None = None
     tags: str | None = None
-    satisfactoin_rating: str | None = None
+    satisfaction_rating: str | None = None
     
 class ResponseTicket(BaseModel):
     id: int

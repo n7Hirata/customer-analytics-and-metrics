@@ -15,13 +15,15 @@ def fake_repo_ticket():
     return FakeTicketRepository()
 
 @pytest.fixture()
-def client_service(fake_repo):
+def client_service(fake_repo_client):
     return ClientService(repository=fake_repo_client)
 
 @pytest.fixture
-def ticket_service(fake_repo):
-    return TicketService(ticket_repository=fake_repo_ticket)
+def ticket_service(fake_repo_ticket, fake_repo_client):
+    return TicketService(
+        ticket_repository=fake_repo_ticket,
+        client_repository=fake_repo_client)
 
-@pytest.fixture
-def metrics_serivce(fake_repo_client, fake_repo_ticket):
-    pass
+# @pytest.fixture
+# def metrics_serivce(fake_repo_client, fake_repo_ticket):
+#     pass

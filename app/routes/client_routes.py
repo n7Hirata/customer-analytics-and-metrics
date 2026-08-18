@@ -29,7 +29,7 @@ def create_client(client_data: CreateClient, service: ClientService = Depends(ge
 
 @client_router.get("", response_model=list[ResponseClient])
 def list_clients(service: ClientService = Depends(get_service)):
-    return service.lits_clients()
+    return service.list_clients()
 
 @client_router.get("/{id}", response_model=ResponseClient)
 def get_client_by_id(id: int, service: ClientService = Depends(get_service)):
